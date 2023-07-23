@@ -54,11 +54,11 @@ class Csv:
         return result
 
 
-mycsv = Csv("Electric_Vehicle_Population_Data.csv")
-print(
-    mycsv.filter_data(
-        column_to_filter="City",
-        list_of_columns_to_display=["City", "State", "Make"],
-        like="Seattle",
-    )
-)
+# mycsv = Csv("Electric_Vehicle_Population_Data.csv")
+# print(
+# mycsv.filter_data(
+# column_to_filter="City",
+# list_of_columns_to_display=["City", "State", "Make"],
+# like="Seattle",
+# )
+# )

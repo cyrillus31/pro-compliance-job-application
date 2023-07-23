@@ -5,6 +5,7 @@ from fastapi.responses import HTMLResponse
 
 from app import file_operations
 from . import utils
+from . import models
 
 
 app = FastAPI()
@@ -30,6 +31,7 @@ def upload_file(file: UploadFile):
     if utils.is_valid_extension(extension):
         utils.create_uploads_folder(extension)
         utils.save_file(file)
+        models.create_table_from_csv(file.filename)
 
         return {
             "filename": file.filename,
