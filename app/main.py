@@ -1,11 +1,9 @@
 import shutil
 
-
 from fastapi import FastAPI, HTTPException, UploadFile, status
-
-
 from fastapi.responses import HTMLResponse
 
+from app import file_operations
 from . import utils
 
 
@@ -35,7 +33,7 @@ def upload_file(file: UploadFile):
 
         return {
             "filename": file.filename,
-            "detail": "File saved on server successfully",
+            "detail": "File saved on a server successfully",
         }
 
     else:
@@ -47,4 +45,13 @@ def upload_file(file: UploadFile):
 
 @app.get("/{extension}", status_code=status.HTTP_200_OK)
 def list_files(extension: str):
-    return utils.get_list_of_all_files_by_extension(extension)
+    all_files_all_columns = file_operations.Csv.get_all_files_all_columns()
+    return {"files": all_files_all_columns}
+
+
+@app.get("/{extension}/{filename}", status_code=status.HTTP_200_OK)
+def filter_data(
+    column: str = "",
+    limit: int = 0,
+):
+    pass
